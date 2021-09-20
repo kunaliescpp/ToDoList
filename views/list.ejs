@@ -1,0 +1,35 @@
+<%- include("header") -%>
+
+  <div class="box" id="heading">
+    <h1> <%= listTitle %> </h1>
+  </div>
+
+  <div class="box itemscard">
+    <%  newListItems.forEach(function(element){ %>
+
+      <form class="" action="/delete" method="post">
+        <div class="item">
+          <!-- For radiobuttons and checkboxes, the onchange event occurs when the checked state has been changed. -->
+          <input name="checkbox" type="checkbox" value= "<%= element._id %>" onchange="this.form.submit()">
+          <p><%=  element.name  %></p>
+        </div>
+        <input type="hidden" name="listname" value="<%= listTitle %>">
+      </form>
+    <%    });  %>
+
+      <form class="item" action="/" method="post">
+        <input type="text" class ="newitem" name="newItem" placeholder="New Item" autocomplete="off" required oninvalid="this.setCustomValidity('Please specify the name.')" oninput="this.setCustomValidity('')">
+        <button class = "fornewitem" type="submit" name="list" value="<%= listTitle %>">+</button>
+      </form>
+  </div>
+
+  <hr>
+  <div class="newdiv">
+    <form class="createnewlist" action="/createlist" method="post">
+      <input class = "secondtext" type="text" name="newlisttitle" placeholder="Enter title of your list" required oninvalid="this.setCustomValidity('Please specify the title.')" oninput="this.setCustomValidity('')">
+      <button class = "createbutton btn btn-dark" type="submit" name="createbutton">Create new list</button>
+    </form>
+  </div>
+  <hr>
+
+<%- include("footer") -%>
