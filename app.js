@@ -30,7 +30,7 @@ const array = [breakfast, study, lunch];
 
 app.get("/", function(req, res) {
   Item.find({},function(err,results){           //{}= find all
-
+    // console.log(results);
     if(results.length === 0){
         Item.insertMany(array, function(err){
           if(err){
